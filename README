@@ -1,0 +1,32 @@
+To see in action:
+	run "python random_log_runner.py"
+		creates a log file called "test_log" in directory
+
+	run "python http_logger.py test_log" (generally command is "python http_logger.py FILE_PATH_HERE")
+
+Controls:
+	press "a" to control alerts section with up/down/left/right
+	press "g" to control general section with up/down/left/right
+
+Improvements that could be made (there's a lot obviously):
+- Downsizing the terminal makes the program error out (fix that)
+- Test more for thread safety:
+    - When shifting the traffic stats queues
+    - when repainting
+- Do a more efficient job repainting (don't repaint everything every single time)
+- Add more information to the application like:
+    - time series traffic graph
+    - user information (how many uniques, how many repeat visitors, etc..)
+    - status information (how many are non-2xx)
+- Be more efficient in calculating metrics (casted a deque to a list to make things easier but could've avoided that, etc...)
+- make more user control features:
+    - changing pages to view different things (will get cluttered all on one screen eventually)
+
+- A lot of code cleanup
+  - Have an actual "Message" class and pass Message objects in the LogMonitor run function on yields rather than using tuples and adhoc naming for message types
+  - code code be a lot more organized and consistent.  
+       - example -> general status history has spaces in it just for formatting but alert list doesn't.  shouldn't be mixing data with formatting
+       - on same note should separate coordinate calculating (for pads especially) from actual painting to make future testing easier
+  - smaller functions
+  - more testing in general
+  - look more into the curses library to see if theres anything that would make things easiers(first time using it)
